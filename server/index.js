@@ -12,6 +12,7 @@ app.use(bodyParser.json());
 
 
 app.get('/api/test', (req,res,next) => {
+    debugger
     res.send("This worked!")
 })
 

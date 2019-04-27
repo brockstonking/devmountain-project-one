@@ -6,7 +6,9 @@ const axios = require('axios')
 
 
 class App extends Component {
+  
   componentDidMount() {
+    debugger
     axios.get('/api/test').then(res => {
       console.log(res.data)
     })
