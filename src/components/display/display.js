@@ -102,4 +102,6 @@ class Display extends Component {
 
 }
 
+// working with sidebar and favorites. Trying to use a put request to add the current question, which is stored in state as data, into the favorites bar on the side. 
+
 export default Display
