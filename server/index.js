@@ -10,10 +10,26 @@ const app = express();
 app.use(cors());
 app.use(bodyParser.json());
 
+app.get('/api/test', (req, res, next)=>{
 
-app.get('/api/test', (req,res,next) => {
-    debugger
-    res.send("This worked!")
+    axios.get('https://api.chucknorris.io/jokes/random')
+        .then((results)=>{
+            res.send(results.data.value)
+        })
+        
+})
+
+let favorites = [];
+
+app.get('/api/question', (req, res) => {
+    axios.get('https://opentdb.com/api.php?amount=1&type=boolean&encode=url3986').then(result => {
+        res.status(200).send(result.data)
+    })
+})
+
+app.put('/api/favorite', (req, res) => {
+    favorites.push(req.body);
+    res.send(favorites)
 })
 
 

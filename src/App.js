@@ -1,15 +1,13 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
-import url from './api'
 import axios from 'axios'
+import Display from './components/display/display'
 
 
 class App extends Component {
   
   componentDidMount() {
-    debugger
-    axios.get('/api/test').then(res => {
+    axios.get('http://localhost:8060/api/test').then(res => {
       console.log(res.data)
     })
   }
@@ -18,20 +16,7 @@ class App extends Component {
   render(){
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
+        <Display />
       </div>
     );
   }

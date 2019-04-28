@@ -1,0 +1,55 @@
+.question {
+    padding: 50px;
+    border-radius: 15px;
+    border: solid gray;
+    width: 300px;
+    margin: auto;
+    margin-top: 50px;
+}
+
+.buttons {
+    display: flex;
+    margin: auto;
+    width: 404px;
+    justify-content: space-around;
+    margin-top: 20px;
+}
+
+.true-button {
+    background-color: green;
+}
+
+.false-button {
+    background-color: red;
+}
+
+.bothButtons {
+    padding: 10px;
+    width: 75px;
+    border-radius: 15px;
+    color: white;
+    cursor: pointer;
+}
+
+.responseImage {
+    margin: auto;
+    margin-top: 20px;
+    width: 100px;
+    height: 100px;
+}
+
+.page {
+    display: flex;
+    justify-content: space-around;
+}
+
+.nextButton {
+    padding: 10px;
+    width: 175px;
+    margin: auto;
+    margin-top: 15px;
+    color: white;
+    background-color: orange;
+    border-radius: 15px;
+    cursor: pointer;
+}
