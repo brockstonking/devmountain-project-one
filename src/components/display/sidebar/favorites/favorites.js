@@ -7,10 +7,15 @@ class Favorites extends Component {
     }
 
     render(){
+        
+        let question = this.props.question;
+        let answer = this.props.answer;
+
         return(
             <div className='favoriteList'>
-                <h1>this.props.favorite</h1>
-                <button onClick={() => { this.props.put }}>Add</button>
+                <img onClick={ () => {this.props.delete(this.props.index)} } className='deleteButton' src="https://cdn4.iconfinder.com/data/icons/basic-ui-elements/700/010_x-512.png" alt=""/>
+                <p>{ question }</p>
+                <p>{ answer }</p>
             </div>
         )
     }

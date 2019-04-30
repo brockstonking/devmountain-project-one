@@ -11,14 +11,15 @@ class Display extends Component {
             question: '',
             answer: '',
             userResponse: '',
-            displayTrue: null,
-            displayFalse: null,
-            data: null
+            data: null,
+            display: null,
+            didMount: false
         }
 
         this.trueClick = this.trueClick.bind( this )
         this.falseClick = this.falseClick.bind( this )
         this.nextClick = this.nextClick.bind( this )
+        this.componentDidMount = this.componentDidMount.bind( this )
         
     }
     
@@ -28,25 +29,36 @@ class Display extends Component {
                 question: decodeURIComponent(response.data.results[0].question),
                 answer: response.data.results[0].correct_answer,
                 userResponse: '',
-                data: response.data
+                data: {
+                    category: response.data.results[0].category,
+                    type: response.data.results[0].type,
+                    difficulty: response.data.results[0].difficulty,
+                    question: decodeURIComponent(response.data.results[0].question),
+                    correct_answer: response.data.results[0].correct_answer,
+                    incorrect_answers: response.data.results[0].incorrect_answers
+                },
+                // create an object that contains each portion of the response, set to the correct response value. 
+                display: true,
+                didMount: true
             })
         })
+        
     }
 
     trueClick(){
         this.setState({
-            userResponse: 'true',
-            displayTrue: true,
-            displayFalse: null
+            userResponse: 'True',
+            
         })
+         
     }
 
     falseClick(){
         this.setState({
-            userResponse: 'false',
-            displayFalse: true,
-            displayTrue: null
+            userResponse: 'False',
+            
         })
+        
     }
 
     nextClick(){
@@ -55,26 +67,41 @@ class Display extends Component {
                 question: decodeURIComponent(response.data.results[0].question),
                 answer: response.data.results[0].correct_answer,
                 userResponse: '',
-                data: response.data,
+                data: {
+                    category: response.data.results[0].category,
+                    type: response.data.results[0].type,
+                    difficulty: response.data.results[0].difficulty,
+                    question: decodeURIComponent(response.data.results[0].question),
+                    correct_answer: response.data.results[0].correct_answer,
+                    incorrect_answers: response.data.results[0].incorrect_answers
+                },
                 displayFalse: null,
                 displayTrue: null
             })
         })
+        console.log(this.state.answer)
     }
 
     
 
     render(){
-        let trueMessage = this.state.displayTrue === true ? <div ><img className='responseImage' src="http://elegantgowns.net/wp-content/uploads/anselmus-green-checkmark-and-red-minus-17-clipart-check-mark.png" alt="Correct"/></div> : <div></div>
-        let falseMessage = this.state.displayFalse === true ? <div ><img className='responseImage' src="http://www.newdesignfile.com/postpic/2013/10/red-xmark-icon_293198.jpeg" alt="Wrong"/></div> : <div></div>
+        let message = this.state.display === true && this.state.userResponse === this.state.answer ? <div ><img className='responseImage' src="http://elegantgowns.net/wp-content/uploads/anselmus-green-checkmark-and-red-minus-17-clipart-check-mark.png" alt="Correct"/></div> : this.state.display === true && this.state.userResponse !== this.state.answer && this.state.userResponse !== '' ? <div><img className='responseImage' src="http://www.newdesignfile.com/postpic/2013/10/red-xmark-icon_293198.jpeg" alt="Wrong"/></div> : <div></div>
+        
+        
+
+       
+
+        
         return(
             <div className='page'>
                 <div>
-                    <Sidebar />
+                    <div>
+                        <Sidebar questionData={ this.state.data } which='sidebar'/>
+                    </div>
                 </div>
                 <div>
                 <div className='question'>
-                    { decodeURIComponent(this.state.question) }
+                    { this.state.question }
                 </div>
             <div className='buttons'>
                 <div onClick={this.trueClick} className='true-button bothButtons'>
@@ -85,12 +112,14 @@ class Display extends Component {
                 </div>
             </div>
             <div onClick={this.falseClick} className='resultMessage'>
-                { trueMessage } 
-                { falseMessage }
+                { message } 
+                
             </div>
             <div className='nextButton' onClick={ this.nextClick }>
                 Try another question
             </div>
+            
+            
             
                 </div>
             </div>

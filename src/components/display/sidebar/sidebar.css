@@ -2,6 +2,19 @@
     margin-top: 25px;
     font-size: 30px;
     border-right: solid;
-    padding: 100px;
     height: 100vh;
+    padding-top: 30px;
+    width: 315px;
+}
+
+.addButton {
+    margin: auto;
+    margin-bottom: 15px;
+    font-size: 15px;
+    background-color: #51b4ff;
+    width: 250px;
+    padding: 10px;
+    border-radius: 15px;
+    cursor: pointer;
+    color: white;
 }

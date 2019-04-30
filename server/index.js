@@ -3,6 +3,7 @@ const cors = require('cors')
 const bodyParser = require('body-parser')
 const axios = require("axios");
 require('dotenv').config();
+const favorites = require('./controllers/favorites_handler')
 
 
 
@@ -19,18 +20,17 @@ app.get('/api/test', (req, res, next)=>{
         
 })
 
-let favorites = [];
+
 
 app.get('/api/question', (req, res) => {
-    axios.get('https://opentdb.com/api.php?amount=1&type=boolean&encode=url3986').then(result => {
+    axios.get('https://opentdb.com/api.php?amount=1&type=boolean&encode=url3986&difficulty=easy').then(result => {
         res.status(200).send(result.data)
     })
 })
 
-app.put('/api/favorite', (req, res) => {
-    favorites.push(req.body);
-    res.send(favorites)
-})
+app.get('/api/favorites/', favorites.read)
+app.post('/api/favorites/', favorites.add)
+app.delete('/api/favorites/', favorites.delete)
 
 
 
