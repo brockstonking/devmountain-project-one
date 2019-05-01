@@ -20,7 +20,7 @@ class Display extends Component {
         this.falseClick = this.falseClick.bind( this )
         this.nextClick = this.nextClick.bind( this )
         this.componentDidMount = this.componentDidMount.bind( this )
-        
+
     }
     
     componentDidMount(){
@@ -42,23 +42,18 @@ class Display extends Component {
                 didMount: true
             })
         })
-        
     }
 
     trueClick(){
         this.setState({
-            userResponse: 'True',
-            
-        })
-         
+            userResponse: 'True'
+        })   
     }
 
     falseClick(){
         this.setState({
-            userResponse: 'False',
-            
-        })
-        
+            userResponse: 'False'  
+        })  
     }
 
     nextClick(){
@@ -79,19 +74,10 @@ class Display extends Component {
                 displayTrue: null
             })
         })
-        console.log(this.state.answer)
     }
-
-    
 
     render(){
         let message = this.state.display === true && this.state.userResponse === this.state.answer ? <div ><img className='responseImage' src="http://elegantgowns.net/wp-content/uploads/anselmus-green-checkmark-and-red-minus-17-clipart-check-mark.png" alt="Correct"/></div> : this.state.display === true && this.state.userResponse !== this.state.answer && this.state.userResponse !== '' ? <div><img className='responseImage' src="http://www.newdesignfile.com/postpic/2013/10/red-xmark-icon_293198.jpeg" alt="Wrong"/></div> : <div></div>
-        
-        
-
-       
-
-        
         return(
             <div className='page'>
                 <div>
@@ -100,37 +86,28 @@ class Display extends Component {
                     </div>
                 </div>
                 <div>
-                <div className='question'>
-                    { this.state.question }
-                </div>
-            <div className='buttons'>
-                <div onClick={this.trueClick} className='true-button bothButtons'>
-                    True
-                </div>
-                <div onClick={this.falseClick} className='false-button bothButtons'>
-                    False
-                </div>
-            </div>
-            <div onClick={this.falseClick} className='resultMessage'>
-                { message } 
-                
-            </div>
-            <div className='nextButton' onClick={ this.nextClick }>
-                Try another question
-            </div>
-            
-            
-            
+                    { this.display }
+                    <div className='question'>
+                        { this.state.question }
+                    </div>
+                    <div className='buttons'>
+                        <div onClick={this.trueClick} className='true-button bothButtons'>
+                            True
+                        </div>
+                        <div onClick={this.falseClick} className='false-button bothButtons'>
+                            False
+                        </div>
+                    </div>
+                    <div onClick={this.falseClick} className='resultMessage'>
+                        { message } 
+                    </div>
+                    <div className='nextButton' onClick={ this.nextClick }>
+                        Try another question
+                    </div>
                 </div>
             </div>
-            
-            
         );
     }
-
-
 }
-
-// working with sidebar and favorites. Trying to use a put request to add the current question, which is stored in state as data, into the favorites bar on the side. 
 
 export default Display

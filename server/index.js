@@ -31,6 +31,7 @@ app.get('/api/question', (req, res) => {
 app.get('/api/favorites/', favorites.read)
 app.post('/api/favorites/', favorites.add)
 app.delete('/api/favorites/', favorites.delete)
+app.put('/api/favorites/', favorites.edit)
 
 
 
