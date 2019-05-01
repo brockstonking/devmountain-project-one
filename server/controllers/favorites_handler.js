@@ -16,7 +16,7 @@ module.exports = {
             correct_answer: req.body.correct_answer,
             incorrect_answers: req.body.incorrect_answers
         }
-        favorites.unshift(entry)
+        favorites.push(entry)
         i++;
         res.status(200).send(favorites)
     },

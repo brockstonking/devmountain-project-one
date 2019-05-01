@@ -50,11 +50,11 @@ class Sidebar extends Component {
         })
     }
 
-    editQuestion(id, input){
-        debugger
+    editQuestion(id, input){  
         axios.put(`http://localhost:8060/api/favorites?id=${id}&question=${input}`).then(results => {
             this.setState({
-                favorites: results.data
+                favorites: results.data,
+                editDisplay: false
             })
         })
     }
@@ -78,7 +78,7 @@ class Sidebar extends Component {
             return <Favorites key={ i } index={ i } question={ e.question } answer={ e.correct_answer } delete={ this.deleteClick } edit={ this.editDisplay }/>
         })
 
-        let editBox = this.state.editDisplay ? <div> <input type="text" placeholder='Enter edit here' onChange={ (e) => { this.handleChange(e.target.value) } }/> <button onClick={ this.editQuestion(this.state.editId, this.state.editInput) }>Confirm</button></div>  : <div></div>
+        let editBox = this.state.editDisplay ? <div> <input type="text" placeholder='Enter edit here' onChange={ (e) => { this.handleChange(e.target.value) } }/> <button onClick={ () => { this.editQuestion(this.state.editId, this.state.editInput) } }>Confirm</button></div>  : <div></div>
         
         return (
             <div className='sidebar'>
