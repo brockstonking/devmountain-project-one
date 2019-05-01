@@ -38,7 +38,6 @@ class Sidebar extends Component {
                 favorites: results.data,
                 didMount: true
             })
-            
         }
         )
     }
