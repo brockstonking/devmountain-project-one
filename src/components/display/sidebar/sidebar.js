@@ -12,9 +12,9 @@ class Sidebar extends Component {
             whichOne: this.props.which, 
             test: null,
             didMount: false,
-            edit: false,
+            edit: this.props.editDisplay,
             editInput: '',
-            editId: null
+            editId: this.props.editId
         }
 
         this.favoriteClick = this.favoriteClick.bind( this )
@@ -38,6 +38,7 @@ class Sidebar extends Component {
                 favorites: results.data,
                 didMount: true
             })
+
         }
         )
     }
@@ -57,13 +58,14 @@ class Sidebar extends Component {
                 editDisplay: false
             })
         })
+        this.props.editClick()
     }
 
     editDisplay(id){
         this.setState({
-            editDisplay: true,
             editId: id
         })
+        this.props.editClick()
     }
 
     handleChange(val) {
@@ -75,10 +77,10 @@ class Sidebar extends Component {
     render(){
 
         let favoriteList = this.state.favorites.map((e, i) => {
-            return <Favorites key={ i } index={ i } question={ e.question } answer={ e.correct_answer } delete={ this.deleteClick } edit={ this.editDisplay }/>
+            return <Favorites key={ i } index={ i } questionId={ e.id } question={ e.question } answer={ e.correct_answer } delete={ this.deleteClick } edit={ this.editDisplay }/>
         })
 
-        let editBox = this.state.editDisplay ? <div> <input type="text" placeholder='Enter edit here' onChange={ (e) => { this.handleChange(e.target.value) } }/> <button onClick={ () => { this.editQuestion(this.state.editId, this.state.editInput) } }>Confirm</button></div>  : <div></div>
+        let editBox = this.props.editDisplay ? <div> <input type="text" placeholder='Enter edit here' onChange={ (e) => { this.handleChange(e.target.value) } }/> <button onClick={ () => { this.editQuestion(this.state.editId, this.state.editInput) } }>Confirm</button></div>  : <div></div>
         
         return (
             <div className='sidebar'>

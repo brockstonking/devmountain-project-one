@@ -4,7 +4,7 @@ i = 0;
 
 module.exports = {
     read: (req, res) => {
-        res.status(200).send(favorites)
+        res.status(200).send(favorites.reverse())
     },
     add: (req, res) => {
         let entry = {
@@ -16,24 +16,24 @@ module.exports = {
             correct_answer: req.body.correct_answer,
             incorrect_answers: req.body.incorrect_answers
         }
-        favorites.push(entry)
+        favorites.unshift(entry)
         i++;
         res.status(200).send(favorites)
     },
     delete: (req, res) => {
         let index = 'monkey';
-        favorites.forEach((e, i)=>{
+        favorites.reverse().forEach((e, i)=>{
             if (Number(req.query.id) === e.id) index = i
         })
         favorites.splice(index, 1)
-        res.status(200).send(favorites)
+        res.status(200).send(favorites.reverse())
     },
     edit: (req, res) => {
-        favorites.forEach((e, i) => {
+        favorites.reverse().forEach((e, i) => {
             if (Number(req.query.id) === e.id) {
                 e.question = req.query.question
             }
         })
-        res.status(200).send(favorites)
+        res.status(200).send(favorites.reverse())
     }
 }

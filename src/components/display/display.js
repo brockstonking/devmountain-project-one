@@ -13,13 +13,16 @@ class Display extends Component {
             userResponse: '',
             data: null,
             display: null,
-            didMount: false
+            didMount: false,
+            editId: null,
+            editDisplay: false
         }
 
         this.trueClick = this.trueClick.bind( this )
         this.falseClick = this.falseClick.bind( this )
         this.nextClick = this.nextClick.bind( this )
         this.componentDidMount = this.componentDidMount.bind( this )
+        this.editClick = this.editClick.bind( this )
 
     }
     
@@ -71,9 +74,22 @@ class Display extends Component {
                     incorrect_answers: response.data.results[0].incorrect_answers
                 },
                 displayFalse: null,
-                displayTrue: null
+                displayTrue: null,
+                editDisplay: false
             })
         })
+    }
+
+    editClick(){
+        if (this.state.editDisplay === true) {
+            this.setState({
+                editDisplay: false
+            })
+        } else if (this.state.editDisplay === false) {
+            this.setState({
+                editDisplay: true
+            })
+        }
     }
 
     render(){
@@ -82,7 +98,7 @@ class Display extends Component {
             <div className='page'>
                 <div>
                     <div>
-                        <Sidebar questionData={ this.state.data } which='sidebar'/>
+                        <Sidebar questionData={ this.state.data } which='sidebar' editDisplay={ this.state.editDisplay } editClick={ this.editClick }/>
                     </div>
                 </div>
                 <div>
