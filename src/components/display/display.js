@@ -40,23 +40,39 @@ class Display extends Component {
                     correct_answer: response.data.results[0].correct_answer,
                     incorrect_answers: response.data.results[0].incorrect_answers
                 },
-                // create an object that contains each portion of the response, set to the correct response value. 
                 display: true,
                 didMount: true
             })
+        })
+        .catch(() => {
+            console.log('Sorry, we encountered a problem. Please try another question!')
         })
     }
 
     trueClick(){
         this.setState({
-            userResponse: 'True'
+            userResponse: 'True',
+            display: true
         })   
+
+        setTimeout(() => {
+            this.setState({
+                display: false
+            })
+        }, 4000)
     }
 
     falseClick(){
         this.setState({
-            userResponse: 'False'  
+            userResponse: 'False',
+            display: true
         })  
+
+        setTimeout(() => {
+            this.setState({
+                display: false
+            })
+        }, 4000)
     }
 
     nextClick(){
@@ -73,10 +89,11 @@ class Display extends Component {
                     correct_answer: response.data.results[0].correct_answer,
                     incorrect_answers: response.data.results[0].incorrect_answers
                 },
-                displayFalse: null,
-                displayTrue: null,
                 editDisplay: false
             })
+        })
+        .catch(() => {
+            console.log('Sorry, we encountered a problem. Please try another question!')
         })
     }
 
@@ -114,7 +131,7 @@ class Display extends Component {
                             False
                         </div>
                     </div>
-                    <div onClick={this.falseClick} className='resultMessage'>
+                    <div className='resultMessage'>
                         { message } 
                     </div>
                     <div className='nextButton' onClick={ this.nextClick }>

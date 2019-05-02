@@ -23,7 +23,7 @@ app.get('/api/test', (req, res, next)=>{
 
 
 app.get('/api/question', (req, res) => {
-    axios.get('https://opentdb.com/api.php?amount=1&type=boolean&encode=url3986&difficulty=easy').then(result => {
+    axios.get('https://opentdb.com/api.php?amount=1&type=boolean&encode=url3986').then(result => {
         res.status(200).send(result.data)
     })
 })
