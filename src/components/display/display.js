@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import axios from 'axios'
 import Sidebar from './sidebar/sidebar'
+import Header from './header bar/header'
 import './display.css'
 
 class Display extends Component {
@@ -107,6 +108,10 @@ class Display extends Component {
     render(){
         let message = this.state.display === true && this.state.userResponse === this.state.answer ? <div ><img className='responseImage' src="http://elegantgowns.net/wp-content/uploads/anselmus-green-checkmark-and-red-minus-17-clipart-check-mark.png" alt="Correct"/></div> : this.state.display === true && this.state.userResponse !== this.state.answer && this.state.userResponse !== '' ? <div><img className='responseImage' src="http://www.newdesignfile.com/postpic/2013/10/red-xmark-icon_293198.jpeg" alt="Wrong"/></div> : <div></div>
         return(
+            <div>
+            <div>
+                <Header />
+            </div>
             <div className='page'>
                 <div>
                     <div>
@@ -136,6 +141,7 @@ class Display extends Component {
                         Hide answer
                     </div>
                 </div>
+            </div>
             </div>
         );
     }
