@@ -48,8 +48,19 @@
     width: 175px;
     margin: auto;
     margin-top: 15px;
+    margin-bottom: 15px;
     color: white;
     background-color: orange;
     border-radius: 15px;
+    cursor: pointer;
+}
+
+.hideButton {
+    padding: 10px;
+    width: 175px;
+    border-radius: 15px;
+    margin: auto;
+    background-color: #f55ba0;
+    color: white;
     cursor: pointer;
 }

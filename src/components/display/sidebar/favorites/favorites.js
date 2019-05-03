@@ -13,7 +13,7 @@ class Favorites extends Component {
             <div className='favoriteList'>
                 <div className='editDelete'>
                     <img onClick={ () => { this.props.edit(this.props.questionId) } } src="https://cdn3.iconfinder.com/data/icons/web-ui-3/128/Compose-2-512.png" className='editButton' alt=""/>
-                    <img onClick={ () => {this.props.delete(this.props.questionId)} } className='deleteButton' src="https://cdn4.iconfinder.com/data/icons/basic-ui-elements/700/010_x-512.png" alt=""/> 
+                    <img onClick={ () => {this.props.delete(this.props.questionId)} } className='deleteButton' src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQivHiJB2Hond5R2oMSz0nUWVLgw-NjTv74Dad5zVdWgcq2rk6C" alt=""/> 
                 </div>                
                 <p>{ question }</p>
                 <p>{ answer }</p>

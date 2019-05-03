@@ -23,6 +23,7 @@ class Display extends Component {
         this.nextClick = this.nextClick.bind( this )
         this.componentDidMount = this.componentDidMount.bind( this )
         this.editClick = this.editClick.bind( this )
+        this.hideAnswer = this.hideAnswer.bind( this )
 
     }
     
@@ -54,12 +55,6 @@ class Display extends Component {
             userResponse: 'True',
             display: true
         })   
-
-        setTimeout(() => {
-            this.setState({
-                display: false
-            })
-        }, 4000)
     }
 
     falseClick(){
@@ -67,12 +62,12 @@ class Display extends Component {
             userResponse: 'False',
             display: true
         })  
+    }
 
-        setTimeout(() => {
-            this.setState({
-                display: false
-            })
-        }, 4000)
+    hideAnswer(){
+        this.setState({
+            display: false
+        })
     }
 
     nextClick(){
@@ -136,6 +131,9 @@ class Display extends Component {
                     </div>
                     <div className='nextButton' onClick={ this.nextClick }>
                         Try another question
+                    </div>
+                    <div onClick={ this.hideAnswer } className='hideButton'>
+                        Hide answer
                     </div>
                 </div>
             </div>
