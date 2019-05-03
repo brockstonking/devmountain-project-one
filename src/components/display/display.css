@@ -1,7 +1,8 @@
 .question {
     padding: 50px;
     border-radius: 15px;
-    border: solid black;
+    border: solid 5px #f3f388;
+    background-color: white;
     width: 300px;
     margin: auto;
     margin-top: 50px;
@@ -41,6 +42,9 @@
 .page {
     display: flex;
     justify-content: space-around;
+    background-color: #c8cbdd;
+    border-radius: 45px;
+    margin-top: 15px;
 }
 
 .nextButton {

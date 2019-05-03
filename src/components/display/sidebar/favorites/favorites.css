@@ -1,7 +1,8 @@
 .favoriteList {
     font-size: 20px;
     text-align: right;
-    background-color: #fac7ff;
+    background-color: white;
+    border: solid 5px #f3f388;
     padding: 10px;
     border-radius: 10px;
     margin: 10px;
@@ -13,3 +14,4 @@ img.deleteButton {
     border-radius: 50px;
     cursor: pointer;
 }
+
