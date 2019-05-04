@@ -9,7 +9,7 @@ class App extends Component {
     return (
       <div className="App">
         <Display />
-        <p className='footer'>All trivia questions supplied by https://opentdb.com</p>
+        <p className='footer'>All trivia questions supplied by opentdb.com</p>
       </div>
     );
   }

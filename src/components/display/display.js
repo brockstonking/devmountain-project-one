@@ -171,11 +171,11 @@ class Display extends Component {
                 <Header />
             </div>
             <div className='page'>
-                <div>
-                    <div>
+                
+                    <div className='sidebarDiv'>
                         <Sidebar questionData={ this.state.data } which='sidebar' editDisplay={ this.state.editDisplay } editClick={ this.editClick }/>
                     </div>
-                </div>
+                
                 <div className='questionSide'>
                     <div>
                     <div className='diffContainer'>
