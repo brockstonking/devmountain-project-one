@@ -81,7 +81,7 @@ class Header extends Component {
                     <div style={ evenLights } className='light ten'></div>
                 </div>
                 <div className='middle'>
-                    <div>
+                    <div className='middleLeft'>
                         <div style={ evenLights } className='light tFour middleTop'></div>
                         <div style={ oddLights } className='light tThree middleBottom'></div>
                     </div>
@@ -110,7 +110,7 @@ class Header extends Component {
                             </div>
                         </div>
                     </div>
-                    <div>
+                    <div className='middleRight'>
                         <div style={ oddLights } className='light eleven middleTop'></div>
                         <div style={ evenLights } className='light twelve middleBottom'></div>
                     </div>

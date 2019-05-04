@@ -5,18 +5,11 @@ import Display from './components/display/display'
 
 
 class App extends Component {
-  
-  componentDidMount() {
-    axios.get('http://localhost:8060/api/test').then(res => {
-      console.log(res.data)
-    })
-  }
-  
-
   render(){
     return (
       <div className="App">
         <Display />
+        <p className='footer'>All trivia questions supplied by https://opentdb.com</p>
       </div>
     );
   }

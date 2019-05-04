@@ -9,7 +9,7 @@ class Display extends Component {
         super(props);
 
         this.state = {
-            question: '',
+            question: 'No questions have been requested yet',
             answer: '',
             userResponse: '',
             data: null,
@@ -72,7 +72,7 @@ class Display extends Component {
     }
 
     nextClick(){
-        axios.get('http://localhost:8060/api/question').then(response => {
+        axios.get(`http://localhost:8060/api/question/?previousQuestion=${ this.state.question }&answer=${ this.state.answer }`).then(response => {
             this.setState({
                 question: decodeURIComponent(response.data.results[0].question),
                 answer: response.data.results[0].correct_answer,

@@ -10,15 +10,7 @@ const favorites = require('./controllers/favorites_handler')
 const app = express();
 app.use(cors());
 app.use(bodyParser.json());
-
-app.get('/api/test', (req, res, next)=>{
-
-    axios.get('https://api.chucknorris.io/jokes/random')
-        .then((results)=>{
-            res.send(results.data.value)
-        })
-        
-})
+let questionHistory = []
 
 
 
@@ -26,12 +18,15 @@ app.get('/api/question', (req, res) => {
     axios.get('https://opentdb.com/api.php?amount=1&type=boolean&encode=url3986').then(result => {
         res.status(200).send(result.data)
     })
+    questionHistory.push([req.query.previousQuestion, req.query.answer])
 })
 
 app.get('/api/favorites/', favorites.read)
 app.post('/api/favorites/', favorites.add)
 app.delete('/api/favorites/', favorites.delete)
 app.put('/api/favorites/', favorites.edit)
+
+
 
 
 
