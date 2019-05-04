@@ -179,7 +179,7 @@ class Display extends Component {
                 <div className='questionSide'>
                     <div>
                     <div className='diffContainer'>
-                <div><h2>Difficulty:</h2></div>
+                <div>Difficulty:</div>
                 <div className='diffButtons'>
                     <div style={ easy } onClick={ this.easy } className='dB easyB'>Easy</div>
                     <div style={ medium } onClick={ this.medium } className='dB mediumB'>Medium</div>
