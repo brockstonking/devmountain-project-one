@@ -45,7 +45,7 @@
 
 .page {
     display: flex;
-    justify-content: space-around;
+    justify-content: space-evenly;
     background-color: #c8cbdd;
     border-radius: 25px;
     margin-top: 15px;
@@ -72,3 +72,29 @@
     color: white;
     cursor: pointer;
 }
+
+.diffButtons {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 25px;
+    color: white;
+}
+
+.diffContainer {
+    margin-top: 20px;
+    margin-bottom: 50px;
+}
+
+.dB {
+    padding: 5px;
+    background-color: #4b55f1;
+    width: 75px;
+    border-radius: 15px;
+    cursor: pointer;
+}
+
+img.questionMarks {
+    width: 200px;
+    margin-top: 40px;
+}
+

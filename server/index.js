@@ -15,10 +15,11 @@ let questionHistory = []
 
 
 app.get('/api/question', (req, res) => {
-    axios.get('https://opentdb.com/api.php?amount=1&type=boolean&encode=url3986').then(result => {
+    axios.get(`https://opentdb.com/api.php?amount=1&type=boolean&encode=url3986&difficulty=${ req.query.difficulty }`).then(result => {
         res.status(200).send(result.data)
     })
     questionHistory.push([req.query.previousQuestion, req.query.answer])
+    console.log(req.query.difficulty)
 })
 
 app.get('/api/favorites/', favorites.read)

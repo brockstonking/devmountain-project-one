@@ -4,10 +4,11 @@
     border-right: solid;
     height: 100vh;
     padding-top: 30px;
-    width: 315px;
+    width: 100%;
     padding-right: 12px;
     overflow: auto;
     margin-bottom: 25px;
+    
 }
 
 .addButton {
@@ -24,7 +25,8 @@
 
 .container {
     margin: auto;
-    width:  300px
+    width:  300px;
+    margin-right: calc(50%-150px)
 }
 
 img.editButton {

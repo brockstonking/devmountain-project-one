@@ -9,14 +9,19 @@ class Display extends Component {
         super(props);
 
         this.state = {
-            question: 'No questions have been requested yet',
+            question: 'Accessing trivia questions...',
             answer: '',
             userResponse: '',
             data: null,
             display: null,
             didMount: false,
             editId: null,
-            editDisplay: false
+            editDisplay: false,
+            difficulty: '', 
+            easy: false,
+            medium: false,
+            hard: false,
+            random: true
         }
 
         this.trueClick = this.trueClick.bind( this )
@@ -25,11 +30,15 @@ class Display extends Component {
         this.componentDidMount = this.componentDidMount.bind( this )
         this.editClick = this.editClick.bind( this )
         this.hideAnswer = this.hideAnswer.bind( this )
+        this.easy = this.easy.bind( this )
+        this.medium = this.medium.bind( this )
+        this.hard = this.hard.bind( this )
+        this.random = this.random.bind( this )
 
     }
     
     componentDidMount(){
-        axios.get('http://localhost:8060/api/question').then(response => {
+        axios.get(`http://localhost:8060/api/question/?difficulty=${ this.state.difficulty }`).then(response => {
             this.setState({
                 question: decodeURIComponent(response.data.results[0].question),
                 answer: response.data.results[0].correct_answer,
@@ -68,11 +77,12 @@ class Display extends Component {
     hideAnswer(){
         this.setState({
             display: false
+            
         })
     }
 
     nextClick(){
-        axios.get(`http://localhost:8060/api/question/?previousQuestion=${ this.state.question }&answer=${ this.state.answer }`).then(response => {
+        axios.get(`http://localhost:8060/api/question/?previousQuestion=${ this.state.question }&answer=${ this.state.answer }&difficulty=${ this.state.difficulty }`).then(response => {
             this.setState({
                 question: decodeURIComponent(response.data.results[0].question),
                 answer: response.data.results[0].correct_answer,
@@ -105,8 +115,56 @@ class Display extends Component {
         }
     }
 
+    easy(){
+        this.setState({
+            difficulty: 'easy',
+            easy: true,
+            medium: false,
+            hard: false,
+            random: false
+        })
+    }
+
+    medium(){
+        this.setState({
+            difficulty: 'medium',
+            easy: false,
+            medium: true,
+            hard: false,
+            random: false
+        })
+    }
+
+    hard(){
+        this.setState({
+            difficulty: 'hard',
+            easy: false,
+            medium: false,
+            hard: true,
+            random: false
+        })        
+    }
+
+    random(){
+        this.setState({
+            difficulty: '',
+            easy: false,
+            medium: false,
+            hard: false,
+            random: true
+        })
+    }
+
     render(){
+        
         let message = this.state.display === true && this.state.userResponse === this.state.answer ? <div ><img className='responseImage' src="http://elegantgowns.net/wp-content/uploads/anselmus-green-checkmark-and-red-minus-17-clipart-check-mark.png" alt="Correct"/></div> : this.state.display === true && this.state.userResponse !== this.state.answer && this.state.userResponse !== '' ? <div><img className='responseImage' src="http://www.newdesignfile.com/postpic/2013/10/red-xmark-icon_293198.jpeg" alt="Wrong"/></div> : <div></div>
+        let easy = this.state.easy ? { boxShadow: '0px 0px 20px orange' } : null
+
+        let medium = this.state.medium ? { boxShadow: '0px 0px 20px orange' } : null
+
+        let hard = this.state.hard ? { boxShadow: '0px 0px 20px orange' } : null
+
+        let random = this.state.random ? { boxShadow: '0px 0px 20px orange' } : null
         return(
             <div>
             <div>
@@ -118,8 +176,19 @@ class Display extends Component {
                         <Sidebar questionData={ this.state.data } which='sidebar' editDisplay={ this.state.editDisplay } editClick={ this.editClick }/>
                     </div>
                 </div>
-                <div>
-                    { this.display }
+                <div className='questionSide'>
+                    <div>
+                    <div className='diffContainer'>
+                <div><h2>Difficulty:</h2></div>
+                <div className='diffButtons'>
+                    <div style={ easy } onClick={ this.easy } className='dB easyB'>Easy</div>
+                    <div style={ medium } onClick={ this.medium } className='dB mediumB'>Medium</div>
+                    <div style={ hard } onClick={ this.hard } className='dB hardB'>Hard</div>
+                    <div style={ random } onClick={ this.random } className='dB randomB'>Random</div>
+                </div> 
+                </div>
+                    </div>
+                    
                     <div className='question'>
                         { this.state.question }
                     </div>
@@ -140,6 +209,9 @@ class Display extends Component {
                     <div onClick={ this.hideAnswer } className='hideButton'>
                         Hide answer
                     </div>
+                    <div>
+                        <img className='questionMarks' src="http://www.hssc.us/wp-content/uploads/2017/06/Trivia.png" alt=""/>
+                    </div>
                 </div>
             </div>
             </div>
@@ -148,3 +220,4 @@ class Display extends Component {
 }
 
 export default Display
+
